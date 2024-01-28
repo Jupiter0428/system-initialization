@@ -116,7 +116,7 @@ function enable_bbr(){
 function update_script(){
     script_dir=$(dirname "$0")
     script_name=$(basename "$0")
-    url="https://"
+    url="https://raw.githubusercontent.com/Jupiter0428/system-initialization/master/initial.sh"
     cp "${script_dir}/${script_name}" "${script_dir}/${script_name}_$(date +%Y%m%d%H%M)"
     wget -q --no-check-certificate "${url}" -O "${script_dir}/${script_name}"
     if [[ $? -eq 0 ]]; then

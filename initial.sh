@@ -150,32 +150,32 @@ function add_ssh_key(){
     ssh_key=""
     if $(id -u ${user} >/dev/null 2>&1); then
         if [[ ${user} == 'root' ]]; then
-        	mkdir /root/.ssh
-        	touch /root/.ssh/authorized_keys
-        	chmod 700 /root/.ssh
-        	chmod 600 /root/.ssh/authorized_keys
-        	echo "${ssh_key}" >> /root/.ssh/authorized_keys
+            mkdir /root/.ssh
+            touch /root/.ssh/authorized_keys
+            chmod 700 /root/.ssh
+            chmod 600 /root/.ssh/authorized_keys
+            echo "${ssh_key}" >> /root/.ssh/authorized_keys
         else
-        	mkdir /home/${user}/.ssh
-        	touch /home/${user}/.ssh/authorized_keys
-        	chmod 700 /home/${user}/.ssh
-        	chmod 600 /home/${user}/.ssh/authorized_keys
-        	echo "${ssh_key}" >> /home/${user}/.ssh/authorized_keys
-        	chown -R ${user}:${user} /home/${user}/.ssh
+            mkdir /home/${user}/.ssh
+            touch /home/${user}/.ssh/authorized_keys
+            chmod 700 /home/${user}/.ssh
+            chmod 600 /home/${user}/.ssh/authorized_keys
+            echo "${ssh_key}" >> /home/${user}/.ssh/authorized_keys
+            chown -R ${user}:${user} /home/${user}/.ssh
         fi
     else
-    	echo "The user '${user}' does not exist"
+        echo "The user '${user}' does not exist"
     fi
 }
 
 function main() {
     case $1 in
-          "root-check")
+        "root-check")
             is_root
             ;;
         "system-check")
             echo "$SYSTEM_ID"
-              ;;
+            ;;
         "system-optimize")
             basic_optimization
             ;;
@@ -185,7 +185,7 @@ function main() {
         "system-firewall")
             close_firewall
             ;;
-        "resource_limits")
+        "resource-limits")
             adjust_resource_limits
             ;;
         "tcp-bbr")
@@ -201,8 +201,8 @@ function main() {
             add_ssh_key $2
             ;;
         ?*)
-              echo "Unsupported feature"
-              ;;
+            echo "Unsupported feature"
+            ;;
         *)
             ;;
       esac
